@@ -1,11 +1,13 @@
 package ui;
 import java.util.Scanner;
 
+import customExceptions.NegativeNumberException;
 import model.LinkedMatrix;
 
 public class Menu {
 
 	private Scanner sc = new Scanner(System.in);
+	private String nickname;
 	private int rows;
 	private int columns;
 	private int mirrors;
@@ -48,20 +50,32 @@ public class Menu {
 	public void play() {
 		playMessage();
 		try {
-			System.out.println("Insert number of rows");
-			rows = Integer.parseInt(sc.nextLine());
-			System.out.println("Insert number of columns");
-			columns = Integer.parseInt(sc.nextLine());
-			System.out.println("Insert number of mirrors");
-			mirrors = Integer.parseInt(sc.nextLine());
+			System.out.println("Insert your nickname, number of columns, number of rows and number of mirrors separated by spaces ");
+			String data = sc.nextLine();			
+			String[] parts = data.split(" ");
+			nickname = parts[0];
+			columns = Integer.parseInt(parts[1]);
+			rows = Integer.parseInt(parts[2]);
+			mirrors = Integer.parseInt(parts[3]);
+			if(columns < 0 || rows < 0 || mirrors < 0) {
+				throw new NegativeNumberException();
+			}
+
+
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
 			}			
 
 			manageMatrix();
 
-		} catch (NumberFormatException e) {
-			System.out.println("Insert a valid option");
+		} catch (ArrayIndexOutOfBoundsException a) {
+			System.out.println("Enter all requested data ");
+			play();
+		}catch(NumberFormatException n) {
+			System.out.println("Insert a valid format");
+			play();
+		} catch (NegativeNumberException neg) {
+			System.out.println(neg.getMessage());
 			play();
 		}
 	}
@@ -74,14 +88,15 @@ public class Menu {
 			mirrorRectifier();
 		}		
 	}
-	
+
 	public void manageMatrix() {
 		LinkedMatrix lm = new LinkedMatrix(rows, columns);
 		System.out.println(lm);
-		
-		
-		
+
+		System.out.println("Insert cell's shooting position");
+
 	}
+
 
 	public void laderboard() {
 
