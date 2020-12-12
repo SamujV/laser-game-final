@@ -98,9 +98,9 @@ public class Menu {
 		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
 		System.out.println(lm);
-		
+
 		String line = sc.nextLine();
-		
+
 		if (line.equalsIgnoreCase("menu")) {
 			calculateScore();
 			start();
@@ -113,32 +113,46 @@ public class Menu {
 			System.out.println(column);
 			System.out.println(dir);
 		}
-		
+
 
 
 	}
-	
+
 	public void calculateScore() {		
 		if (lm.getFoundedMirrors() == mirrors) {
 			score = 100;
-			
+
 		}else {
 			score = (100*lm.getFoundedMirrors())/mirrors; // se saca por regla de 3
 		}	
 	}
-	
+
 	public void addScorePlayer() {
-		Player newP = new Player(nickname, score);
-		
-		addScorePlayer2( newP, root);
-		
-		
+		Player newP = new Player(nickname, score);		
+		addScorePlayer2(newP, root);
 	}
-	
-	public void addScorePlayer2(Player newp, Player root1) {
-		
+
+	public void addScorePlayer2(Player newP, Player root1) {
+
+		if (root1 == null) {
+			root1 = newP;
+		}else {
+			if (newP.getScore()<= root1.getScore()) {
+				if (root1.getIzq() == null) {
+					root1.setIzq(newP);
+				}else {
+					addScorePlayer2(newP, root1.getIzq());
+				}
+			}else {
+				if (root1.getDer() == null) {
+					root1.setDer(newP);
+				}else {
+					addScorePlayer2(newP, root1.getDer());
+				}
+			}
+		}
 	}
-	
+
 
 
 
