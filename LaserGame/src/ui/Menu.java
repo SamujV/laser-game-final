@@ -11,8 +11,9 @@ public class Menu {
 	private int rows;
 	private int columns;
 	private int mirrors;
+	private LinkedMatrix lm;
 	public Menu() {
-
+		
 	}
 
 	public void start() {
@@ -91,11 +92,31 @@ public class Menu {
 	}
 
 	public void manageMatrix() {
-		LinkedMatrix lm = new LinkedMatrix(rows, columns, mirrors);
+		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
 		System.out.println(lm);
+		
+		String line = sc.nextLine();
+		
+		if (line.equalsIgnoreCase("menu")) {
+			calculateScore();
+			start();
+		}
+		if (line.charAt(0) == 'L') {
+			int row = line.charAt(1) - '0'  ;
+			int column =  line.charAt(2) - '0' ;
+			String dir = Character.toString(line.charAt(3));
+			System.out.println(row);
+			System.out.println(column);
+			System.out.println(dir);
+		}
+		
 
 
+	}
+	
+	public void calculateScore() {
+		
 	}
 
 

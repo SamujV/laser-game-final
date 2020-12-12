@@ -9,11 +9,27 @@ public class Node {
 	private Node prev;
 	private Node up;
 	private Node down;
+	private boolean isMirror;
+	private String direction; // (/ ó \)
 	
 	public Node(int r, int c) {
 		row = r;
 		col = c;
 	}
+	public void setMirror(boolean isMirr) {
+		isMirror = isMirr;
+	}
+	public boolean getIsMirror() {
+		return isMirror;
+	}
+	
+	public void setDirection(String dir) {
+		direction = dir;
+	}
+	public String getDirection() {
+		return direction;
+	}
+	
 	
 	public int getRow() {
 		return row;
@@ -26,6 +42,7 @@ public class Node {
 	public char getNameCol() {
 		return (char)('A' + col);
 	}
+	
 
 	public Node getNext() {
 		return next;

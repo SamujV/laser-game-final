@@ -6,8 +6,8 @@ public class LinkedMatrix {
 	private int rows;
 	private int cols;
 	private int mirrors;
-	private final String LEFT_TILTED_Mirror = "\"";
-	private final String RIGHT_TILTED_Mirror = "/";
+	private final String LEFT_TILTED_MIRROR = "\"";
+	private final String RIGHT_TILTED_MIRROR = "/";
 
 	public LinkedMatrix(int m, int n, int mirr) {
 		rows = m;
