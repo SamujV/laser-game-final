@@ -12,6 +12,7 @@ public class Menu {
 
 	public void start() {
 		int option;
+		showMenu();
 		option = Integer.parseInt(sc.nextLine());
 		manageMenu(option);
 		if(option != 3) {
@@ -43,11 +44,6 @@ public class Menu {
 
 	}
 
-	public void goodbye() {
-
-	}
-
-
 
 	public void showMenu() {
 		String msg = "\n";
@@ -57,7 +53,23 @@ public class Menu {
 		System.out.println(msg);
 	}
 
+	public void showWelcome() {
+		String msg = "";
+		msg += "======================================================================\n";
+		msg += "==================== WELCOME TO THE LASER GAME =======================\n";
+		msg += "======================================================================";
+		System.out.println(msg);
+	}
+		
 
+	public void goodbye() {
+		String msg = "";
+		msg += "======================================================================\n";
+		msg += "==================== WELCOME TO THE LASER GAME =======================\n";
+		msg += "======================================================================";
+		System.out.println(msg);
+	}
+		
 
 
 }
