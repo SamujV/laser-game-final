@@ -22,15 +22,25 @@ public class Menu {
 	public void manageMenu(int o) {
 		switch(o) {
 		case 1:
+			play();
 			break;
 		case 2:
+			laderboard();
 			break;
 		case 3:
+			goodbye();
 			break;
 		
 		default:
+			System.out.println("Insert a valid option");
 		}
 	}
+	
+	public void play() {
+		
+	}
+
+	
 	
 	
 	public void showMenu() {
