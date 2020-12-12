@@ -5,10 +5,14 @@ public class LinkedMatrix {
 	private Node first;
 	private int rows;
 	private int cols;
+	private int mirrors;
+	private final String LEFT_TILTED_Mirror = "\"";
+	private final String RIGHT_TILTED_Mirror = "/";
 
-	public LinkedMatrix(int m, int n) {
+	public LinkedMatrix(int m, int n, int mirr) {
 		rows = m;
 		cols = n;
+		mirrors = mirr;
 		generateMatrix();
 	}
 

@@ -53,14 +53,15 @@ public class Menu {
 			System.out.println("Insert your nickname, number of columns, number of rows and number of mirrors separated by spaces ");
 			String data = sc.nextLine();			
 			String[] parts = data.split(" ");
+
 			nickname = parts[0];
 			columns = Integer.parseInt(parts[1]);
 			rows = Integer.parseInt(parts[2]);
 			mirrors = Integer.parseInt(parts[3]);
+
 			if(columns < 0 || rows < 0 || mirrors < 0) {
 				throw new NegativeNumberException();
 			}
-
 
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
@@ -71,7 +72,7 @@ public class Menu {
 		} catch (ArrayIndexOutOfBoundsException a) {
 			System.out.println("Enter all requested data ");
 			play();
-		}catch(NumberFormatException n) {
+		} catch(NumberFormatException n) {
 			System.out.println("Insert a valid format");
 			play();
 		} catch (NegativeNumberException neg) {
@@ -90,10 +91,10 @@ public class Menu {
 	}
 
 	public void manageMatrix() {
-		LinkedMatrix lm = new LinkedMatrix(rows, columns);
+		LinkedMatrix lm = new LinkedMatrix(rows, columns, mirrors);
+		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
 		System.out.println(lm);
 
-		System.out.println("Insert cell's shooting position");
 
 	}
 
@@ -101,7 +102,6 @@ public class Menu {
 	public void laderboard() {
 
 	}
-
 
 	public void showMenu() {
 		String msg = "\n";
