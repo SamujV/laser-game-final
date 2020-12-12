@@ -1,26 +1,33 @@
 package ui;
-
 import java.util.Scanner;
 
 public class Menu {
 
 	private Scanner sc = new Scanner(System.in);
-
+	private int rows;
+	private int columns;
+	private int mirrors;
 	public Menu() {
 
 	}
 
 	public void start() {
-		int option;
-		showMenu();
-		option = Integer.parseInt(sc.nextLine());
-		manageMenu(option);
-		if(option != 3) {
+		try {
+			int option;
+			showMenu();
+			option = Integer.parseInt(sc.nextLine());
+			manageMenu(option);
+			if(option != 3) {
+				start();
+			}
+		}catch(NumberFormatException e) {
+			System.out.println("Insert a valid format");
 			start();
-		}		
+		}
 	}	
 
 	public void manageMenu(int o) {
+
 		switch(o) {
 		case 1:
 			play();
@@ -31,13 +38,29 @@ public class Menu {
 		case 3:
 			goodbye();
 			break;
-
 		default:
 			System.out.println("Insert a valid option");
 		}
 	}
 
 	public void play() {
+		playMessage();
+		
+		try {
+			System.out.println("Insert number of rows");
+			rows = Integer.parseInt(sc.nextLine());
+			System.out.println("Insert number of columns");
+			columns = Integer.parseInt(sc.nextLine());
+			System.out.println("Insert number of mirrors");
+			mirrors = Integer.parseInt(sc.nextLine());
+			if(mirrors > rows*columns) {
+				System.out.println("There can be no more mirrors than boxes");
+			}
+			
+		} catch (NumberFormatException e) {
+			System.out.println("Insert a valid option");
+			play();
+		}
 
 	}
 	public void laderboard() {
@@ -53,6 +76,13 @@ public class Menu {
 		System.out.println(msg);
 	}
 
+	public void playMessage() {
+		String msg = "";
+		msg += "======================================================================\n";
+		msg += "=========================== LET'S PLAY ===============================\n";
+		msg += "======================================================================\n";
+		System.out.println(msg);
+	}
 	public void showWelcome() {
 		String msg = "";
 		msg += "======================================================================\n";
@@ -60,16 +90,12 @@ public class Menu {
 		msg += "======================================================================";
 		System.out.println(msg);
 	}
-		
 
 	public void goodbye() {
 		String msg = "";
 		msg += "======================================================================\n";
-		msg += "==================== WELCOME TO THE LASER GAME =======================\n";
+		msg += "============================== GOODBYE ===============================\n";
 		msg += "======================================================================";
 		System.out.println(msg);
 	}
-		
-
-
 }
