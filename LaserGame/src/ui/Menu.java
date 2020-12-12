@@ -53,8 +53,8 @@ public class Menu {
 			columns = Integer.parseInt(sc.nextLine());
 			System.out.println("Insert number of mirrors");
 			mirrors = Integer.parseInt(sc.nextLine());
-			if(mirrors > rows*columns) {
-				System.out.println("There can be no more mirrors than boxes");
+			if(mirrors > rows*columns) {				
+				mirrors = mirrorRectifier();
 			}
 			
 		} catch (NumberFormatException e) {
@@ -63,6 +63,18 @@ public class Menu {
 		}
 
 	}
+	public int mirrorRectifier() {
+		int mirrors = 0;
+		System.out.println("There can be no more mirrors than cells");
+		System.out.println("Insert number of mirrors");
+		mirrors = Integer.parseInt(sc.nextLine());
+		if (mirrors > rows*columns) {
+			mirrorRectifier();
+		}		
+		return mirrors;
+	}
+	
+	
 	public void laderboard() {
 
 	}
