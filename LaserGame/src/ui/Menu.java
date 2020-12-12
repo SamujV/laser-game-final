@@ -163,7 +163,15 @@ public class Menu {
 	public boolean isEmpty() {
 		return root == null;
 	}
-
+	
+	public void inOrden(Player root1) {
+		if (!isEmpty()) {
+			inOrden(root1.getIzq());
+			System.out.println(root1.getScore());
+			inOrden(root1.getDer());
+		}
+	}
+	
 	public void showMenu() {
 		String msg = "\n";
 		msg += " 1) Play. \n";
