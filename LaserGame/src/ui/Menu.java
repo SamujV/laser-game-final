@@ -39,7 +39,9 @@ public class Menu {
 	public void play() {
 		
 	}
-
+public void laderboard() {
+	
+}
 	
 	
 	
