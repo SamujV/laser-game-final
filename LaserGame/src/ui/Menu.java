@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import customExceptions.NegativeNumberException;
 import model.LinkedMatrix;
+import model.Player;
 
 public class Menu {
 
@@ -12,8 +13,9 @@ public class Menu {
 	private int columns;
 	private int mirrors;
 	private LinkedMatrix lm;
+	private Player root;
 	public Menu() {
-		
+		root = null;
 	}
 
 	public void start() {
@@ -104,7 +106,7 @@ public class Menu {
 		}
 		if (line.charAt(0) == 'L') {
 			int row = line.charAt(1) - '0'  ;
-			int column =  line.charAt(2) - '0' ;
+			String column =   Character.toString(line.charAt(2));
 			String dir = Character.toString(line.charAt(3));
 			System.out.println(row);
 			System.out.println(column);
@@ -116,6 +118,11 @@ public class Menu {
 	}
 	
 	public void calculateScore() {
+		
+		
+		
+		
+		
 		
 	}
 
