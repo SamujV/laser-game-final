@@ -1,6 +1,8 @@
 package ui;
 import java.util.Scanner;
 
+import model.LinkedMatrix;
+
 public class Menu {
 
 	private Scanner sc = new Scanner(System.in);
@@ -45,7 +47,6 @@ public class Menu {
 
 	public void play() {
 		playMessage();
-		
 		try {
 			System.out.println("Insert number of rows");
 			rows = Integer.parseInt(sc.nextLine());
@@ -54,27 +55,33 @@ public class Menu {
 			System.out.println("Insert number of mirrors");
 			mirrors = Integer.parseInt(sc.nextLine());
 			if(mirrors > rows*columns) {				
-				mirrors = mirrorRectifier();
-			}
-			
+				mirrorRectifier();
+			}			
+
+			manageMatrix();
+
 		} catch (NumberFormatException e) {
 			System.out.println("Insert a valid option");
 			play();
 		}
-
 	}
-	public int mirrorRectifier() {
-		int mirrors = 0;
+
+	public void mirrorRectifier() {
 		System.out.println("There can be no more mirrors than cells");
 		System.out.println("Insert number of mirrors");
 		mirrors = Integer.parseInt(sc.nextLine());
 		if (mirrors > rows*columns) {
 			mirrorRectifier();
 		}		
-		return mirrors;
 	}
 	
-	
+	public void manageMatrix() {
+		LinkedMatrix lm = new LinkedMatrix(rows, columns);
+		System.out.println(lm);
+		
+		
+	}
+
 	public void laderboard() {
 
 	}
