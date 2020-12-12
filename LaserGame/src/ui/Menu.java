@@ -159,6 +159,10 @@ public class Menu {
 	public void laderboard() {
 
 	}
+	
+	public boolean isEmpty() {
+		return root == null;
+	}
 
 	public void showMenu() {
 		String msg = "\n";
