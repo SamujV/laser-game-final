@@ -6,6 +6,7 @@ public class LinkedMatrix {
 	private int rows;
 	private int cols;
 	private int mirrors;
+	private int mirrFounded;
 	private final String LEFT_TILTED_MIRROR = "\"";
 	private final String RIGHT_TILTED_MIRROR = "/";
 
@@ -13,6 +14,7 @@ public class LinkedMatrix {
 		rows = m;
 		cols = n;
 		mirrors = mirr;
+		mirrFounded = 0;
 		generateMatrix();
 	}
 
@@ -72,6 +74,14 @@ public class LinkedMatrix {
 			msg += toStringCol(current.getNext());
 		}
 		return msg;
+	}
+	
+	public void foundMirror() {
+		mirrFounded++;
+	}
+	
+	public int getFoundedMirrors() {
+		return mirrFounded;
 	}
 
 }

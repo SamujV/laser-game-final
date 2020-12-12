@@ -9,6 +9,7 @@ public class Menu {
 
 	private Scanner sc = new Scanner(System.in);
 	private String nickname;
+	private int score;
 	private int rows;
 	private int columns;
 	private int mirrors;
@@ -117,14 +118,28 @@ public class Menu {
 
 	}
 	
-	public void calculateScore() {
+	public void calculateScore() {		
+		if (lm.getFoundedMirrors() == mirrors) {
+			score = 100;
+			
+		}else {
+			score = (100*lm.getFoundedMirrors())/mirrors; // se saca por regla de 3
+		}	
+	}
+	
+	public void addScorePlayer() {
+		Player newP = new Player(nickname, score);
 		
-		
-		
-		
+		addScorePlayer2( newP, root);
 		
 		
 	}
+	
+	public void addScorePlayer2(Player newp, Player root1) {
+		
+	}
+	
+
 
 
 	public void laderboard() {
