@@ -3,13 +3,13 @@ package ui;
 import java.util.Scanner;
 
 public class Menu {
-	
+
 	private Scanner sc = new Scanner(System.in);
-	
+
 	public Menu() {
-		
+
 	}
-	
+
 	public void start() {
 		int option;
 		option = Integer.parseInt(sc.nextLine());
@@ -18,7 +18,7 @@ public class Menu {
 			start();
 		}		
 	}	
-	
+
 	public void manageMenu(int o) {
 		switch(o) {
 		case 1:
@@ -30,21 +30,25 @@ public class Menu {
 		case 3:
 			goodbye();
 			break;
-		
+
 		default:
 			System.out.println("Insert a valid option");
 		}
 	}
-	
+
 	public void play() {
-		
+
 	}
-public void laderboard() {
-	
-}
-	
-	
-	
+	public void laderboard() {
+
+	}
+
+	public void goodbye() {
+
+	}
+
+
+
 	public void showMenu() {
 		String msg = "\n";
 		msg += " 1) Play. \n";
@@ -52,8 +56,8 @@ public void laderboard() {
 		msg += " 3) Exit.\n";
 		System.out.println(msg);
 	}
-	
-	
-	
+
+
+
 
 }
