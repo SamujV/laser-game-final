@@ -20,6 +20,7 @@ public class Node {
 		isMirror = false;
 		direction = " ";
 		secretDirection = "";
+		founded = false;
 	}
 	public void setMirror(boolean isMirr) {
 		isMirror = isMirr;
@@ -86,7 +87,7 @@ public class Node {
 	}
 	
 	public String toString() {
-		return "[("+row+ ","+col + ")]"; //(" + row +","+col+")
+		return "["+ direction + "]"; //(" + row +","+col+")
 	}
 
 	public String toStringX() {

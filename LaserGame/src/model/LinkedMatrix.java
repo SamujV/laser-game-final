@@ -88,16 +88,15 @@ public class LinkedMatrix {
 			current = current.getDown();
 			moveRow(randomRow, dire, current);
 		}
-		if (current.getDown() != null && current.getRow() == randomRow) {
+		if (current.getRow() == randomRow) {
 			if (current.getIsMirror() && mirrorsAdded < mirrors) {
-				System.out.println("again");
 				createMirrors();
 			}
 			if (mirrorsAdded < mirrors) {
 				current.setSecretDirection(dire);
 				current.setMirror(true);
+				current.setFounded(true);
 				mirrorsAdded++;
-				System.out.println("again22");
 				createMirrors();
 			}
 		}
@@ -156,7 +155,7 @@ public class LinkedMatrix {
 	private String toStringCol(Node current) {
 		String msg = "";
 		if (current != null) {
-			if (current.getIsMirror()) {
+			if (current.getIsMirror() && current.isFounded()) {
 				msg = current.getSecretDirection();
 			}else {
 				msg = current.toString();
