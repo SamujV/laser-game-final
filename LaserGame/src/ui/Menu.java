@@ -133,7 +133,7 @@ public class Menu {
 		int col = 'A' - c;
 		System.out.println(col);
 		
-	//	lm.locate(row, col, dir);
+		lm.locate(row, col, dir);
 		
 		
 		manageMatrix();

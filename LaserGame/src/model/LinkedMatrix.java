@@ -90,6 +90,7 @@ public class LinkedMatrix {
 				current.setSecretDirection(dire);
 				current.setMirror(true);
 				mirrorsAdded++;
+				System.out.println("again22");
 				createMirrors();
 			}
 		}
@@ -119,10 +120,12 @@ public class LinkedMatrix {
 			moveRow(row, dire, current);
 		}
 		if (current.getDown() != null && current.getRow() == row) {
-			if (current.getIsMirror()) {
+			if (current.getIsMirror() && dire.equals(current.getSecretDirection())) {
 				foundMirror();
 				current.setDirection(current.getSecretDirection());
-			}		
+			}else {
+				current.setDirection("h");
+			}
 		}
 	}
 	
