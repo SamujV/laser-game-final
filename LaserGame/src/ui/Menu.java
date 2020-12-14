@@ -70,7 +70,7 @@ public class Menu {
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
 			}			
-		
+
 			manageMatrix();
 
 		} catch (ArrayIndexOutOfBoundsException a) {
@@ -99,8 +99,9 @@ public class Menu {
 	public void manageMatrix() {
 		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
+		lm.createMirrors();
 		System.out.println(lm.toString1());
-		//lm.createMirrors();
+		
 		String line = sc.nextLine();
 
 		if (line.equalsIgnoreCase("menu")) {
@@ -117,8 +118,8 @@ public class Menu {
 			int row = line.charAt(0) - '0';
 			String col =  Character.toString(line.charAt(1));
 			String dir = Character.toString(line.charAt(2));
-			
-			
+
+
 		}
 
 
@@ -136,21 +137,21 @@ public class Menu {
 
 	public void addScorePlayer() {
 		Player newP = new Player(nickname, score);
-//		Player newP1 = new Player("A", 4);
-//		Player newP2 = new Player("B", 2);
-//		Player newP3 = new Player("C", 6);
-//		Player newP4 = new Player("D", 1);	
-//		Player newP5 = new Player("E", 3);
-//		Player newP6 = new Player("F", 5);
-//		Player newP7 = new Player("G", 7);
-//		
-//		addScorePlayer2(newP1, root);
-//		addScorePlayer2(newP2, root);
-//		addScorePlayer2(newP3, root);
-//		addScorePlayer2(newP4, root);
-//		addScorePlayer2(newP5, root);
-//		addScorePlayer2(newP6, root);
-//		addScorePlayer2(newP7, root);
+		//		Player newP1 = new Player("A", 4);
+		//		Player newP2 = new Player("B", 2);
+		//		Player newP3 = new Player("C", 6);
+		//		Player newP4 = new Player("D", 1);	
+		//		Player newP5 = new Player("E", 3);
+		//		Player newP6 = new Player("F", 5);
+		//		Player newP7 = new Player("G", 7);
+		addScorePlayer2(newP, root);
+		//		addScorePlayer2(newP1, root);
+		//		addScorePlayer2(newP2, root);
+		//		addScorePlayer2(newP3, root);
+		//		addScorePlayer2(newP4, root);
+		//		addScorePlayer2(newP5, root);
+		//		addScorePlayer2(newP6, root);
+		//		addScorePlayer2(newP7, root);
 	}
 
 	public void addScorePlayer2(Player newP, Player root1) {
@@ -172,23 +173,24 @@ public class Menu {
 				}
 			}
 		}
-		
-		
+
+
 	}
 
 
 
 
 	public void laderboard() {
+		laderboardM();
 		if (root != null) {
 			inOrden(root);	
 		}else {
 			System.out.println("Play a game first");
 		}
 	}
-	
-	
-	
+
+
+
 	public void inOrden(Player root1) {
 		if (root1 != null) {
 			inOrden(root1.getIzq());
@@ -196,7 +198,7 @@ public class Menu {
 			inOrden(root1.getDer());
 		}
 	}
-	
+
 	public void showMenu() {
 		String msg = "\n";
 		msg += " 1) Play. \n";
@@ -216,7 +218,7 @@ public class Menu {
 		String msg = "";
 		msg += "======================================================================\n";
 		msg += "==================== WELCOME TO THE LASER GAME =======================\n";
-		msg += "======================================================================";
+		msg += "======================================================================\n";
 		System.out.println(msg);
 	}
 
@@ -225,6 +227,13 @@ public class Menu {
 		msg += "======================================================================\n";
 		msg += "============================== GOODBYE ===============================\n";
 		msg += "======================================================================";
+		System.out.println(msg);
+	}
+	public void laderboardM() {
+		String msg = "";
+		msg += "======================================================================\n";
+		msg += "============================= LADERBOARD =============================\n";
+		msg += "======================================================================\n";
 		System.out.println(msg);
 	}
 }

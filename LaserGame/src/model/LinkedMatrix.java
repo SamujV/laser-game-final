@@ -63,36 +63,66 @@ public class LinkedMatrix {
 		int randomRow = random.nextInt(rows + 1);
 		int randomCol = random.nextInt(cols + 1);
 		String dire = (random.nextInt(2) == 1) ? LEFT_TILTED_MIRROR : RIGHT_TILTED_MIRROR;
-		moveRow(randomRow, randomCol, dire, first);
+		//moveRow(randomRow, randomCol, dire, first);
+		moveCol(randomRow, randomCol, dire, first);
 	}
 
-	private void moveRow(int randomRow, int randomCol,String dire , Node current) {
-		
+	private void moveCol(int randomRow, int randomCol, String dire, Node current) {
+
+		if (current.getNext() != null && current.getCol() < randomCol) {
+			current = current.getNext();
+			moveCol(randomRow, randomCol, dire, current);			
+		}else if (current.getCol() == randomCol) {
+			moveRow(randomRow, dire, current);
+		}
+	}
+
+	private void moveRow(int randomRow, String dire, Node current) {
 		if (current != null && current.getRow() < randomRow) {
 			current = current.getDown();
-			moveRow(randomRow, randomCol, dire, current);
-		}else if (current.getRow() == randomRow) {
-			moveCol(randomCol, dire, current);	
+			moveRow(randomRow, dire, current);
 		}
-		
-
-	}
-
-	private void moveCol(int randomCol, String dire, Node current) {
-		if (current.getCol() < randomCol) {
-			current = current.getNext();
-			moveCol(randomCol, dire, current);
-		}else if (current.getIsMirror() && mirrorsAdded < mirrors) {
-			createMirrors();
-		}else if(mirrorsAdded < mirrors) {
-			current.setDirection(dire);
-			current.setMirror(true);
-			mirrorsAdded++;
-			createMirrors();
-				
+		if (current != null && current.getRow() == randomRow) {
+			if (current.getIsMirror() && mirrorsAdded < mirrors) {
+				createMirrors();
+			}
+			if (mirrorsAdded < mirrors) {
+				current.setDirection(dire);
+				current.setMirror(true);
+				mirrorsAdded++;
+				createMirrors();
+			}
 		}
-		
 	}
+	
+	//	private void moveRow(int randomRow, int randomCol,String dire , Node current) {
+	//		
+	//		if (current != null && current.getRow() < randomRow) {
+	//			current = current.getDown();
+	//			moveRow(randomRow, randomCol, dire, current);
+	//		}else if (current.getRow() == randomRow) {
+	//			moveCol(randomCol, dire, current);	
+	//		}
+	//		
+	//
+	//	}
+	//
+	//	private void moveCol(int randomCol, String dire, Node current) {
+	//		if (current.getCol() < randomCol) {
+	//			current = current.getNext();
+	//			moveCol(randomCol, dire, current);
+	//		}else if (current.getIsMirror() && mirrorsAdded < mirrors) {
+	//			createMirrors();
+	//		}else if(mirrorsAdded < mirrors) {
+	//			current.setDirection(dire);
+	//			current.setMirror(true);
+	//			mirrorsAdded++;
+	//			createMirrors();
+	//				
+	//		}
+	//		
+	//	}
+
 
 	public String toString1() {
 		String msg = "";
