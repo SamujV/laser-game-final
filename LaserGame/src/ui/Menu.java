@@ -1,6 +1,5 @@
 package ui;
 import java.util.Scanner;
-
 import customExceptions.NegativeNumberException;
 import model.LinkedMatrix;
 import model.Player;
