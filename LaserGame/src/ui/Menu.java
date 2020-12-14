@@ -56,7 +56,7 @@ public class Menu {
 		try {
 			System.out.println("Insert your nickname, number of columns, number of rows and number of mirrors separated by spaces ");
 			String data = sc.nextLine();			
-			String[] parts = data.split(" ");
+			String[] parts = data.split(" "); // unica estructura de datos en el programa
 
 			nickname = parts[0];
 			columns = Integer.parseInt(parts[1]);
@@ -86,7 +86,7 @@ public class Menu {
 	}
 
 	public void mirrorRectifier() {
-		System.out.println("There can be no more mirrors than cells");
+		System.out.println("\nThere can be no more mirrors than cells");
 		System.out.println("Insert number of mirrors");
 		mirrors = Integer.parseInt(sc.nextLine());
 		if (mirrors > rows*columns) {
@@ -97,7 +97,7 @@ public class Menu {
 	public void manageMatrix() {
 		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
-		System.out.println(lm);
+		System.out.println(lm.toString1());
 
 		String line = sc.nextLine();
 
@@ -121,7 +121,6 @@ public class Menu {
 	public void calculateScore() {		
 		if (lm.getFoundedMirrors() == mirrors) {
 			score = 100;
-
 		}else {
 			score = (100*lm.getFoundedMirrors())/mirrors; // se saca por regla de 3
 		}	
@@ -157,7 +156,7 @@ public class Menu {
 
 
 	public void laderboard() {
-
+		inOrden(root);
 	}
 	
 	public boolean isEmpty() {

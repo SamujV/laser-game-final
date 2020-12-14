@@ -1,5 +1,6 @@
 package model;
 
+//credit to seyerman to given the structure to do the matrix using linked list
 public class LinkedMatrix {
 
 	private Node first;
@@ -22,10 +23,10 @@ public class LinkedMatrix {
 		//System.out.println("vamos a crear la matriz");
 		first = new Node(0,0);
 		//System.out.println("se crea el first");
-		createRow(0,0,first);
+		createRow(0,0,first); 
 	}
 
-	private void createRow(int i, int j, Node currentFirstRow) {
+	private void createRow(int i, int j, Node currentFirstRow) { // crea la fila
 		//System.out.println("en createRow con la fila " + i);
 		createCol(i, j+1, currentFirstRow, currentFirstRow.getUp());
 		if(i+1 < rows) {
@@ -52,7 +53,7 @@ public class LinkedMatrix {
 		}
 	}
 
-	public String toString() {
+	public String toString1() {
 		String msg = "";
 		msg = toStringRow(first);
 		return msg;
