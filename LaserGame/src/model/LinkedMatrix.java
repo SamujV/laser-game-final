@@ -9,6 +9,7 @@ public class LinkedMatrix {
 	private int rows;
 	private int cols;
 	private int mirrors;
+	private int mirrorsAdded;
 	private int mirrFounded;
 	public final String LEFT_TILTED_MIRROR = "\\";
 	public final String RIGHT_TILTED_MIRROR = "/";
@@ -17,6 +18,7 @@ public class LinkedMatrix {
 		rows = m;
 		cols = n;
 		mirrors = mirr;
+		mirrorsAdded = 0;
 		mirrFounded = 0;
 		generateMatrix();
 	}
@@ -45,7 +47,7 @@ public class LinkedMatrix {
 			Node current = new Node(i,j);
 			current.setPrev(prev);
 			prev.setNext(current);
-			
+
 			if(rowPrev != null) {
 				rowPrev = rowPrev.getNext();
 				current.setUp(rowPrev);
@@ -54,13 +56,40 @@ public class LinkedMatrix {
 			createCol(i,j+1, current, rowPrev);
 		}
 	}
-	
-	public void createMirrors() {
+
+	public void createMirrors() { // random taked from: https://es.stackoverflow.com/questions/5390/como-generar-n%C3%BAmeros-aleatorios-dentro-de-un-rango-de-valores
 		Random random = new Random(System.currentTimeMillis());
-		
+
 		int randomRow = random.nextInt(rows + 1);
 		int randomCol = random.nextInt(cols + 1);
-		
+		String dire = (random.nextInt(2) == 1) ? LEFT_TILTED_MIRROR : RIGHT_TILTED_MIRROR;
+		moveRow(randomRow, randomCol, dire, first);
+	}
+
+	private void moveRow(int randomRow, int randomCol,String dire , Node current) {
+		if (current.getRow() < randomRow) {
+			current = current.getDown();
+			moveRow(randomRow, randomCol, dire, current);
+		}
+		moveCol(randomCol, dire, current);
+
+
+	}
+
+	private void moveCol(int randomCol, String dire, Node current) {
+		if (current.getCol() < randomCol) {
+			current = current.getNext();
+			moveCol(randomCol, dire, current);
+		}
+		if (current.getIsMirror() && mirrorsAdded < mirrors) {
+			createMirrors();
+		}else if(mirrorsAdded < mirrors) {
+			current.setDirection(dire);
+			current.setMirror(true);
+			mirrorsAdded++;
+			createMirrors();
+				
+		}
 		
 	}
 
@@ -87,11 +116,11 @@ public class LinkedMatrix {
 		}
 		return msg;
 	}
-	
+
 	public void foundMirror() {
 		mirrFounded++;
 	}
-	
+
 	public int getFoundedMirrors() {
 		return mirrFounded;
 	}

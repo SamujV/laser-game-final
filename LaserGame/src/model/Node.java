@@ -75,7 +75,7 @@ public class Node {
 	}
 	
 	public String toString() {
-		return "["+direction+"]"; //(" + row +","+col+")
+		return "[" + " " + "]"; //(" + row +","+col+")
 	}
 
 	public String toStringX() {
@@ -87,6 +87,7 @@ public class Node {
 	public String toStringE() {
 		return "[E]"; 
 	}
+	
 
 	
 	

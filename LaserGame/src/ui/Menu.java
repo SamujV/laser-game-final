@@ -70,7 +70,7 @@ public class Menu {
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
 			}			
-			addMirrors();
+		
 			manageMatrix();
 
 		} catch (ArrayIndexOutOfBoundsException a) {
@@ -85,10 +85,7 @@ public class Menu {
 		}
 	}
 
-	private void addMirrors() {
-		
-		
-	}
+
 
 	public void mirrorRectifier() {
 		System.out.println("\nThere can be no more mirrors than cells");
@@ -103,7 +100,7 @@ public class Menu {
 		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
 		System.out.println(lm.toString1());
-
+		lm.createMirrors();
 		String line = sc.nextLine();
 
 		if (line.equalsIgnoreCase("menu")) {
