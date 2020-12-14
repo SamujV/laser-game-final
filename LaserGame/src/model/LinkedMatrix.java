@@ -67,12 +67,14 @@ public class LinkedMatrix {
 	}
 
 	private void moveRow(int randomRow, int randomCol,String dire , Node current) {
-		if (current.getRow() < randomRow) {
+		
+		if (current != null && current.getRow() < randomRow) {
 			current = current.getDown();
 			moveRow(randomRow, randomCol, dire, current);
+		}else if (current.getRow() == randomRow) {
+			moveCol(randomCol, dire, current);	
 		}
-		moveCol(randomCol, dire, current);
-
+		
 
 	}
 
@@ -80,8 +82,7 @@ public class LinkedMatrix {
 		if (current.getCol() < randomCol) {
 			current = current.getNext();
 			moveCol(randomCol, dire, current);
-		}
-		if (current.getIsMirror() && mirrorsAdded < mirrors) {
+		}else if (current.getIsMirror() && mirrorsAdded < mirrors) {
 			createMirrors();
 		}else if(mirrorsAdded < mirrors) {
 			current.setDirection(dire);

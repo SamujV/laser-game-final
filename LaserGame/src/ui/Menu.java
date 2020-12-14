@@ -100,7 +100,7 @@ public class Menu {
 		lm = new LinkedMatrix(rows, columns, mirrors);
 		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
 		System.out.println(lm.toString1());
-		lm.createMirrors();
+		//lm.createMirrors();
 		String line = sc.nextLine();
 
 		if (line.equalsIgnoreCase("menu")) {
@@ -130,18 +130,33 @@ public class Menu {
 			score = 100;
 		}else {
 			score = (100*lm.getFoundedMirrors())/mirrors; // se saca por regla de 3
-		}	
+		}
+		addScorePlayer();
 	}
 
 	public void addScorePlayer() {
-		Player newP = new Player(nickname, score);		
-		addScorePlayer2(newP, root);
+		Player newP = new Player(nickname, score);
+//		Player newP1 = new Player("A", 4);
+//		Player newP2 = new Player("B", 2);
+//		Player newP3 = new Player("C", 6);
+//		Player newP4 = new Player("D", 1);	
+//		Player newP5 = new Player("E", 3);
+//		Player newP6 = new Player("F", 5);
+//		Player newP7 = new Player("G", 7);
+//		
+//		addScorePlayer2(newP1, root);
+//		addScorePlayer2(newP2, root);
+//		addScorePlayer2(newP3, root);
+//		addScorePlayer2(newP4, root);
+//		addScorePlayer2(newP5, root);
+//		addScorePlayer2(newP6, root);
+//		addScorePlayer2(newP7, root);
 	}
 
 	public void addScorePlayer2(Player newP, Player root1) {
 
 		if (root1 == null) {
-			root1 = newP;
+			root = newP;
 		}else {
 			if (newP.getScore()<= root1.getScore()) {
 				if (root1.getIzq() == null) {
@@ -157,23 +172,27 @@ public class Menu {
 				}
 			}
 		}
+		
+		
 	}
 
 
 
 
 	public void laderboard() {
-		inOrden(root);
+		if (root != null) {
+			inOrden(root);	
+		}else {
+			System.out.println("Play a game first");
+		}
 	}
 	
-	public boolean isEmpty() {
-		return root == null;
-	}
+	
 	
 	public void inOrden(Player root1) {
-		if (!isEmpty()) {
+		if (root1 != null) {
 			inOrden(root1.getIzq());
-			System.out.println(root1.getScore());
+			System.out.println(root1.getNickname() + ": " + root1.getScore());
 			inOrden(root1.getDer());
 		}
 	}
