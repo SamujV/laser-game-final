@@ -60,9 +60,15 @@ public class LinkedMatrix {
 	public void createMirrors() { // random taked from: https://es.stackoverflow.com/questions/5390/como-generar-n%C3%BAmeros-aleatorios-dentro-de-un-rango-de-valores
 		Random random = new Random(System.currentTimeMillis());
 
-		int randomRow = random.nextInt(rows + 1);
-		int randomCol = random.nextInt(cols + 1);
-		String dire = (random.nextInt(2) == 1) ? LEFT_TILTED_MIRROR : RIGHT_TILTED_MIRROR;
+		int randomRow = random.nextInt(rows);// number between 0 and row - 1
+		int randomCol = random.nextInt(cols);
+		int randomm = random.nextInt(100);
+		String dire;
+		if (randomm < 50) {
+			dire =LEFT_TILTED_MIRROR;
+		}else {
+			dire = RIGHT_TILTED_MIRROR;
+		}
 		moveCol(randomRow, randomCol, dire, first);
 	}
 
@@ -71,7 +77,8 @@ public class LinkedMatrix {
 		if (current.getNext() != null && current.getCol() < randomCol) {
 			current = current.getNext();
 			moveCol(randomRow, randomCol, dire, current);			
-		}else if (current.getCol() == randomCol) {
+		}
+		if (current.getCol() == randomCol) {
 			moveRow(randomRow, dire, current);
 		}
 	}
@@ -95,15 +102,15 @@ public class LinkedMatrix {
 			}
 		}
 	}
-	
+
 	public void locate(int row, int column, String dir) {		
-		
+
 		moveColLocate(row, column, dir, first);
-		
-		
-		
+
+
+
 	}
-	
+
 	private void moveColLocate(int row, int col, String dire, Node current) {
 
 		if (current.getNext() != null && current.getCol() < col) {
@@ -128,8 +135,8 @@ public class LinkedMatrix {
 			}
 		}
 	}
-	
-	
+
+
 
 	public String toString1() {
 		String msg = "";
@@ -149,7 +156,11 @@ public class LinkedMatrix {
 	private String toStringCol(Node current) {
 		String msg = "";
 		if (current != null) {
-			msg = current.toString();
+			if (current.getIsMirror()) {
+				msg = current.getSecretDirection();
+			}else {
+				msg = current.toString();
+			}
 			msg += toStringCol(current.getNext());
 		}
 		return msg;
@@ -163,6 +174,6 @@ public class LinkedMatrix {
 		return mirrFounded;
 	}
 
-	
+
 
 }

@@ -12,6 +12,7 @@ public class Node {
 	private boolean isMirror;
 	private String direction; // (/ ó \)
 	private String secretDirection;
+	private boolean founded;
 	
 	public Node(int r, int c) {
 		row = r;
@@ -34,7 +35,7 @@ public class Node {
 		secretDirection= dir;
 	}
 	public String getSecretDirection() {
-		return secretDirection;
+		return "[" + secretDirection + "]";
 	}
 	public String getDirection() {
 		return direction;
@@ -85,7 +86,7 @@ public class Node {
 	}
 	
 	public String toString() {
-		return "[" + direction + "]"; //(" + row +","+col+")
+		return "[("+row+ ","+col + ")]"; //(" + row +","+col+")
 	}
 
 	public String toStringX() {
@@ -98,6 +99,13 @@ public class Node {
 		return "[E]"; 
 	}
 	
+	public boolean isFounded() {
+		return founded;
+	}
+	
+	public void setFounded(boolean f) {
+		founded = f; 
+	}
 
 	
 	
