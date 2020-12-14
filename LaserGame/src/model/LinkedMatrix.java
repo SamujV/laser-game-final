@@ -9,8 +9,8 @@ public class LinkedMatrix {
 	private int rows;
 	private int cols;
 	private int mirrors;
-	private int mirrorsAdded;
-	private int mirrFounded;
+	private int mirrorsAdded; // to insert mirrors on matrix
+	private int mirrFounded;   // to calculate score
 	public final String LEFT_TILTED_MIRROR = "\\";
 	public final String RIGHT_TILTED_MIRROR = "/";
 
