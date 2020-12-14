@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 //credit to seyerman to given the structure to do the matrix using linked list
 public class LinkedMatrix {
 
@@ -8,8 +10,8 @@ public class LinkedMatrix {
 	private int cols;
 	private int mirrors;
 	private int mirrFounded;
-	private final String LEFT_TILTED_MIRROR = "\"";
-	private final String RIGHT_TILTED_MIRROR = "/";
+	public final String LEFT_TILTED_MIRROR = "\\";
+	public final String RIGHT_TILTED_MIRROR = "/";
 
 	public LinkedMatrix(int m, int n, int mirr) {
 		rows = m;
@@ -51,6 +53,15 @@ public class LinkedMatrix {
 			}
 			createCol(i,j+1, current, rowPrev);
 		}
+	}
+	
+	public void createMirrors() {
+		Random random = new Random(System.currentTimeMillis());
+		
+		int randomRow = random.nextInt(rows + 1);
+		int randomCol = random.nextInt(cols + 1);
+		
+		
 	}
 
 	public String toString1() {

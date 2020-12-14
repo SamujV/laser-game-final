@@ -15,6 +15,8 @@ public class Node {
 	public Node(int r, int c) {
 		row = r;
 		col = c;
+		isMirror = false;
+		direction = " ";
 	}
 	public void setMirror(boolean isMirr) {
 		isMirror = isMirr;
@@ -26,10 +28,6 @@ public class Node {
 	public void setDirection(String dir) {
 		direction = dir;
 	}
-	public String getDirection() {
-		return direction;
-	}
-	
 	
 	public int getRow() {
 		return row;
@@ -77,8 +75,21 @@ public class Node {
 	}
 	
 	public String toString() {
-		return "[ ]"; //(" + row +","+col+")
+		return "["+direction+"]"; //(" + row +","+col+")
 	}
+
+	public String toStringX() {
+		return "[X]"; 
+	}
+	public String toStringS() {
+		return "[S]"; 
+	}
+	public String toStringE() {
+		return "[E]"; 
+	}
+
+	
+	
 	
 	
 }

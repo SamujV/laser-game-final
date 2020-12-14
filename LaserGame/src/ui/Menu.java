@@ -70,7 +70,7 @@ public class Menu {
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
 			}			
-
+			addMirrors();
 			manageMatrix();
 
 		} catch (ArrayIndexOutOfBoundsException a) {
@@ -83,6 +83,11 @@ public class Menu {
 			System.out.println(neg.getMessage());
 			play();
 		}
+	}
+
+	private void addMirrors() {
+		
+		
 	}
 
 	public void mirrorRectifier() {
@@ -104,14 +109,19 @@ public class Menu {
 		if (line.equalsIgnoreCase("menu")) {
 			calculateScore();
 			start();
-		}
-		if (line.charAt(0) == 'L') {
+		}else if (line.charAt(0) == 'L') {
 			int row = line.charAt(1) - '0'  ;
 			String column =   Character.toString(line.charAt(2));
 			String dir = Character.toString(line.charAt(3));
 			System.out.println(row);
 			System.out.println(column);
 			System.out.println(dir);
+		}else {
+			int row = line.charAt(0) - '0';
+			String col =  Character.toString(line.charAt(1));
+			String dir = Character.toString(line.charAt(2));
+			
+			
 		}
 
 
