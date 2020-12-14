@@ -63,7 +63,6 @@ public class LinkedMatrix {
 		int randomRow = random.nextInt(rows + 1);
 		int randomCol = random.nextInt(cols + 1);
 		String dire = (random.nextInt(2) == 1) ? LEFT_TILTED_MIRROR : RIGHT_TILTED_MIRROR;
-		//moveRow(randomRow, randomCol, dire, first);
 		moveCol(randomRow, randomCol, dire, first);
 	}
 
@@ -78,16 +77,17 @@ public class LinkedMatrix {
 	}
 
 	private void moveRow(int randomRow, String dire, Node current) {
-		if (current != null && current.getRow() < randomRow) {
+		if (current.getDown() != null && current.getRow() < randomRow) {
 			current = current.getDown();
 			moveRow(randomRow, dire, current);
 		}
-		if (current != null && current.getRow() == randomRow) {
+		if (current.getDown() != null && current.getRow() == randomRow) {
 			if (current.getIsMirror() && mirrorsAdded < mirrors) {
+				System.out.println("again");
 				createMirrors();
 			}
 			if (mirrorsAdded < mirrors) {
-				current.setDirection(dire);
+				current.setSecretDirection(dire);
 				current.setMirror(true);
 				mirrorsAdded++;
 				createMirrors();
@@ -95,34 +95,38 @@ public class LinkedMatrix {
 		}
 	}
 	
-	//	private void moveRow(int randomRow, int randomCol,String dire , Node current) {
-	//		
-	//		if (current != null && current.getRow() < randomRow) {
-	//			current = current.getDown();
-	//			moveRow(randomRow, randomCol, dire, current);
-	//		}else if (current.getRow() == randomRow) {
-	//			moveCol(randomCol, dire, current);	
-	//		}
-	//		
-	//
-	//	}
-	//
-	//	private void moveCol(int randomCol, String dire, Node current) {
-	//		if (current.getCol() < randomCol) {
-	//			current = current.getNext();
-	//			moveCol(randomCol, dire, current);
-	//		}else if (current.getIsMirror() && mirrorsAdded < mirrors) {
-	//			createMirrors();
-	//		}else if(mirrorsAdded < mirrors) {
-	//			current.setDirection(dire);
-	//			current.setMirror(true);
-	//			mirrorsAdded++;
-	//			createMirrors();
-	//				
-	//		}
-	//		
-	//	}
+	public void locate(int row, int column, String dir) {		
+		
+		moveColLocate(row, column, dir, first);
+		
+		
+		
+	}
+	
+	private void moveColLocate(int row, int col, String dire, Node current) {
 
+		if (current.getNext() != null && current.getCol() < col) {
+			current = current.getNext();
+			moveCol(row, col, dire, current);			
+		}else if (current.getCol() == col) {
+			moveRowLocate(row, dire, current);
+		}
+	}
+
+	private void moveRowLocate(int row, String dire, Node current) {
+		if (current.getDown() != null && current.getRow() < row) {
+			current = current.getDown();
+			moveRow(row, dire, current);
+		}
+		if (current.getDown() != null && current.getRow() == row) {
+			if (current.getIsMirror()) {
+				foundMirror();
+				current.setDirection(current.getSecretDirection());
+			}		
+		}
+	}
+	
+	
 
 	public String toString1() {
 		String msg = "";
@@ -155,5 +159,7 @@ public class LinkedMatrix {
 	public int getFoundedMirrors() {
 		return mirrFounded;
 	}
+
+	
 
 }

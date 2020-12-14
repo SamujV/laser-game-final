@@ -70,7 +70,8 @@ public class Menu {
 			if(mirrors > rows*columns) {				
 				mirrorRectifier();
 			}			
-
+			lm = new LinkedMatrix(rows, columns, mirrors);
+			lm.createMirrors();
 			manageMatrix();
 
 		} catch (ArrayIndexOutOfBoundsException a) {
@@ -97,9 +98,8 @@ public class Menu {
 	}
 
 	public void manageMatrix() {
-		lm = new LinkedMatrix(rows, columns, mirrors);
-		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");
-		lm.createMirrors();
+		
+		System.out.println( "\n" + nickname + ":" + " " + mirrors + " mirrors remaining");		
 		System.out.println(lm.toString1());
 		
 		String line = sc.nextLine();
@@ -108,22 +108,52 @@ public class Menu {
 			calculateScore();
 			start();
 		}else if (line.charAt(0) == 'L') {
-			int row = line.charAt(1) - '0'  ;
+			int row = line.charAt(1) - '0';
 			String column =   Character.toString(line.charAt(2));
 			String dir = Character.toString(line.charAt(3));
-			System.out.println(row);
-			System.out.println(column);
-			System.out.println(dir);
+			locate(row, column, dir);
+			
 		}else {
 			int row = line.charAt(0) - '0';
 			String col =  Character.toString(line.charAt(1));
-			String dir = Character.toString(line.charAt(2));
-
-
+			if (line.length() > 2) {
+				String dir = Character.toString(line.charAt(2));
+				shootCorner(row, col, dir);
+					
+			}else {
+				shoot(row, col);	
+			}			
 		}
+	}
+	
+	private void locate(int row, String column, String dir) {
+		
+		char c = Character.toUpperCase(column.charAt(0));
+		
+		int col = 'A' - c;
+		System.out.println(col);
+		
+	//	lm.locate(row, col, dir);
+		
+		
+		manageMatrix();
+	}
 
+	private void shoot(int row, String col) {
+		if (row == 1 || row == rows) { 
+			
+			
+			
+		}	
+		
+		manageMatrix();
+	}
 
-
+	private void shootCorner(int row, String col, String dir) {
+	
+		
+		
+		manageMatrix();
 	}
 
 	public void calculateScore() {		
@@ -173,8 +203,6 @@ public class Menu {
 				}
 			}
 		}
-
-
 	}
 
 

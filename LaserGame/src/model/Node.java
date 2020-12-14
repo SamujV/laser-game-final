@@ -11,12 +11,14 @@ public class Node {
 	private Node down;
 	private boolean isMirror;
 	private String direction; // (/ ó \)
+	private String secretDirection;
 	
 	public Node(int r, int c) {
 		row = r;
 		col = c;
 		isMirror = false;
 		direction = " ";
+		secretDirection = "";
 	}
 	public void setMirror(boolean isMirr) {
 		isMirror = isMirr;
@@ -28,7 +30,15 @@ public class Node {
 	public void setDirection(String dir) {
 		direction = dir;
 	}
-	
+	public void setSecretDirection(String dir) {
+		secretDirection= dir;
+	}
+	public String getSecretDirection() {
+		return secretDirection;
+	}
+	public String getDirection() {
+		return direction;
+	}
 	public int getRow() {
 		return row;
 	}
